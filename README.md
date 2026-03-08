@@ -1,45 +1,40 @@
 # OpenClaw Skills GitHub Sync
 
-OpenClaw skills GitHub 同步工具。
+> 将你的 OpenClaw skills 同步到 GitHub
 
-## 功能
+一个 OpenClaw skill，提供交互式配置向导，将你的 skills 同步到 GitHub 仓库。
 
-- 支持私有仓库同步
-- 支持公开仓库同步
-- 每次同步需要手动确认（非实时）
-- 自动检测变更并提交推送
-- 支持 Windows / Linux / Mac
+## 安装
 
-## 使用说明
-
-这是一个 OpenClaw skill，结构如下：
-
-```
-openclaw-skills-github-sync/
-├── SKILL.md           # Skill 定义和使用说明
-├── README.md           # 本文件
-└── scripts/
-    ├── sync.ps1       # Windows 脚本
-    └── sync.sh        # Linux/Mac 脚本
+```bash
+# 克隆到 OpenClaw skills 目录
+cd ~/.openclaw/skills
+git clone https://github.com/Hi-Jiajun/openclaw-skills-github-sync.git
 ```
 
-详细使用说明请查看 [SKILL.md](SKILL.md)
+或从 ClawHub 直接安装：https://clawhub.ai/skills/openclaw-skills-github-sync
 
-## 快速开始
+## 特性
 
-### Windows
+- 🎯 交互式配置向导，5分钟快速上手
+- 🔒 手动确认同步，安全可控
+- 🌐 支持私有/公开双仓库
+- 🌎 支持 Windows / Linux / Mac
+
+## 使用
 
 ```powershell
+# 首次配置
+powershell -ExecutionPolicy Bypass -File "scripts/setup.ps1"
+
+# 执行同步
 powershell -ExecutionPolicy Bypass -File "scripts/sync.ps1"
 ```
 
-### Linux / Mac
+详细说明请查看 [SKILL.md](SKILL.md)
 
-```bash
-chmod +x scripts/sync.sh
-./scripts/sync.sh
-```
+## Star ⭐
 
-## GitHub
+如果对你有帮助，欢迎 Star！
 
 https://github.com/Hi-Jiajun/openclaw-skills-github-sync

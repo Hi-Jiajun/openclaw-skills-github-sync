@@ -69,6 +69,20 @@ chmod +x scripts/sync.sh
 
 详细说明请查看 [SKILL.md](SKILL.md)
 
+## 捐赠支持
+
+如果这个项目对你有帮助，欢迎扫码捐赠支持！
+
+### 微信
+
+![微信收款码](mm_facetoface_collect_qrcode_1772974720410.png)
+
+### 支付宝
+
+![支付宝收款码](1772974731593.jpg)
+
+---
+
 ## Star ⭐
 
 如果对你有帮助，欢迎 Star！

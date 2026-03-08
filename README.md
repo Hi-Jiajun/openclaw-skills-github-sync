@@ -6,6 +6,16 @@
 
 ## 安装
 
+### Windows
+
+```powershell
+# 克隆到 OpenClaw skills 目录
+cd $env:USERPROFILE\.openclaw\skills
+git clone https://github.com/Hi-Jiajun/openclaw-skills-github-sync.git
+```
+
+### Linux / Mac
+
 ```bash
 # 克隆到 OpenClaw skills 目录
 cd ~/.openclaw/skills
@@ -18,17 +28,43 @@ git clone https://github.com/Hi-Jiajun/openclaw-skills-github-sync.git
 
 - 🎯 交互式配置向导，5分钟快速上手
 - 🔒 手动确认同步，安全可控
-- 🌐 支持私有/公开双仓库
-- 🌎 支持 Windows / Linux / Mac
+- 🌐 私有/公开双仓库支持
+- 🌍 支持 Windows / Linux / Mac
 
-## 使用
+## 快速开始
+
+### Windows
 
 ```powershell
-# 首次配置
+# 首次配置（交互式向导）
 powershell -ExecutionPolicy Bypass -File "scripts/setup.ps1"
 
 # 执行同步
 powershell -ExecutionPolicy Bypass -File "scripts/sync.ps1"
+```
+
+### Linux
+
+```bash
+# 首次配置（交互式向导）
+chmod +x scripts/setup.sh
+./scripts/setup.sh
+
+# 执行同步
+chmod +x scripts/sync.sh
+./scripts/sync.sh
+```
+
+### Mac
+
+```bash
+# 首次配置（交互式向导）
+chmod +x scripts/setup.sh
+./scripts/setup.sh
+
+# 执行同步
+chmod +x scripts/sync.sh
+./scripts/sync.sh
 ```
 
 详细说明请查看 [SKILL.md](SKILL.md)

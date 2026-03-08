@@ -26,25 +26,31 @@ description: |
 | Linux | scripts/sync.sh |
 | Mac | scripts/sync.sh |
 
-## 配置项
+## 快速开始
 
-### Windows (scripts/sync.ps1)
+### 方式一：交互式配置（推荐首次使用）
+
+首次使用时，运行交互式配置向导：
+
+#### Windows
 ```powershell
-$privatePath = "C:\Users\YourName\openclaw-skills-private"
-$publicPath = "C:\Users\YourName\openclaw-skills-public"
+powershell -ExecutionPolicy Bypass -File "scripts/setup.ps1"
 ```
 
-### Linux/Mac (scripts/sync.sh)
+#### Linux / Mac
 ```bash
-PRIVATE_PATH="$HOME/openclaw-skills-private"
-PUBLIC_PATH="$HOME/openclaw-skills-public"
+chmod +x scripts/setup.sh
+./scripts/setup.sh
 ```
 
-## 使用方法
+交互式配置会引导你：
+- 检查 GitHub 登录状态
+- 设置私有/公开 Skills 路径
+- 自动初始化 Git 仓库
 
-### 首次设置
+### 方式二：手动配置
 
-安装 GitHub CLI：
+1. 安装 GitHub CLI：
 ```bash
 # Linux
 sudo apt install gh
@@ -56,39 +62,12 @@ brew install gh
 winget install GitHub.cli
 ```
 
-登录 GitHub：
+2. 登录 GitHub：
 ```bash
 gh auth login
 ```
 
-创建仓库：
-```bash
-gh repo create my-skills --private
-gh repo create my-skills-public --public
-```
-
-初始化本地仓库：
-```bash
-cd ~/my-skills-folder
-git init
-git config user.email "your@email.com"
-git config user.name "Your Name"
-git remote add origin https://github.com/YOUR_USERNAME/your-repo.git
-git push -u origin main
-```
-
-### 同步 skills
-
-#### Windows
-```powershell
-powershell -ExecutionPolicy Bypass -File "scripts/sync.ps1"
-```
-
-#### Linux / Mac
-```bash
-chmod +x scripts/sync.sh
-./scripts/sync.sh
-```
+3. 创建仓库并手动配置
 
 ## 同步流程
 

@@ -10,14 +10,18 @@ OpenClaw skills GitHub 同步工具。
 - 自动检测变更并提交推送
 - 支持 Windows / Linux / Mac
 
-## 支持平台
-
-| 平台 | 脚本 |
-|------|------|
-| Windows | sync.ps1 |
-| Linux/Mac | sync.sh |
-
 ## 使用说明
+
+这是一个 OpenClaw skill，结构如下：
+
+```
+openclaw-skills-github-sync/
+├── SKILL.md           # Skill 定义和使用说明
+├── README.md           # 本文件
+└── scripts/
+    ├── sync.ps1       # Windows 脚本
+    └── sync.sh        # Linux/Mac 脚本
+```
 
 详细使用说明请查看 [SKILL.md](SKILL.md)
 
@@ -26,14 +30,14 @@ OpenClaw skills GitHub 同步工具。
 ### Windows
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File "sync.ps1"
+powershell -ExecutionPolicy Bypass -File "scripts/sync.ps1"
 ```
 
 ### Linux / Mac
 
 ```bash
-chmod +x sync.sh
-./sync.sh
+chmod +x scripts/sync.sh
+./scripts/sync.sh
 ```
 
 ## GitHub

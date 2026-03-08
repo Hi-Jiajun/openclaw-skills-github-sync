@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# OpenClaw Skills GitHub Sync Script
+# OpenClaw Skills GitHub Sync Script for Linux/Mac
 # ==== 配置加载 ====
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CONFIG_FILE="$SCRIPT_DIR/config.sh"
@@ -13,9 +13,9 @@ else
     PUBLIC_PATH="$HOME/openclaw-skills-public"
 fi
 
-Write-Host "=========================================="
-Write-Host "OpenClaw Skills GitHub Sync"
-Write-Host "=========================================="
+echo "=========================================="
+echo "OpenClaw Skills GitHub Sync"
+echo "=========================================="
 
 gitPath="git"
 

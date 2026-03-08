@@ -2,15 +2,13 @@
 name: openclaw-skills-github-sync
 description: |
   将 OpenClaw skills 同步到 GitHub（非实时，需手动确认）。
-  支持 Linux/Mac。
+  支持 Windows/Linux/Mac。
   使用场景：skill 创建或修改完成后同步到 GitHub
 ---
 
 # OpenClaw Skills GitHub Sync Skill
 
 > 将你的 OpenClaw skills 同步到 GitHub
-
-⚠️ **注意**：当前版本仅支持 **Linux/Mac**。Windows 版本正在开发中。
 
 ## 功能
 
@@ -19,58 +17,54 @@ description: |
 - ✅ 支持公开仓库同步
 - ✅ 手动确认同步（非实时，更安全）
 - ✅ 自动检测变更并提交推送
-- ⚠️ Linux / Mac 支持
+- ✅ 支持 Windows / Linux / Mac
 
 ## 支持平台
 
-| 平台 | 脚本 | 状态 |
-|------|------|------|
-| Linux | scripts/sync.sh | ✅ 可用 |
-| Mac | scripts/sync.sh | ✅ 可用 |
-| Windows | scripts/sync.ps1 | ⏳ 开发中 |
+| 平台 | 脚本 |
+|------|------|
+| Windows | scripts/sync.ps1 |
+| Linux | scripts/sync.sh |
+| Mac | scripts/sync.sh |
 
-## 使用方法
+## 安装方式
 
-### 首次设置
+### Windows
 
-```bash
-# 安装 GitHub CLI
-# Linux
-sudo apt install gh
-
-# Mac
-brew install gh
-
-# 登录
-gh auth login
-
-# 创建仓库
-gh repo create my-skills --private
-gh repo create my-skills-public --public
+```powershell
+# 克隆到 OpenClaw skills 目录
+cd $env:USERPROFILE\.openclaw\skills
+git clone https://github.com/Hi-Jiajun/openclaw-skills-github-sync.git
 ```
 
-### 初始化本地仓库
+### Linux / Mac
 
 ```bash
-cd ~/my-skills-folder
-git init
-git config user.email "your@email.com"
-git config user.name "Your Name"
-git remote add origin https://github.com/YOUR_USERNAME/your-repo.git
-
-# 确保创建 .gitignore 文件排除敏感目录
-echo "credentials/" >> .gitignore
-echo "*.key" >> .gitignore
-
-git add .gitignore
-git commit -m "Add .gitignore"
-git push -u origin main
+# 克隆到你的 OpenClaw skills 目录
+cd ~/.openclaw/skills
+git clone https://github.com/Hi-Jiajun/openclaw-skills-github-sync.git
 ```
 
-### 同步 skills
+## 快速开始
 
-#### Linux / Mac
+### Windows
+
+```powershell
+# 首次配置（交互式向导）
+powershell -ExecutionPolicy Bypass -File "scripts/setup.ps1"
+
+# 执行同步
+powershell -ExecutionPolicy Bypass -File "scripts/sync.ps1"
+```
+
+### Linux / Mac
+
 ```bash
+# 首次配置（交互式向导）
+chmod +x scripts/setup.sh
+./scripts/setup.sh
+
+# 执行同步
 chmod +x scripts/sync.sh
 ./scripts/sync.sh
 ```
@@ -103,7 +97,6 @@ credentials/
 
 ## 注意事项
 
-- ⚠️ Windows 版本正在开发中
 - 公开仓库建议设置为私有
 - 同步前务必检查 .gitignore 配置
 - credentials/ 目录请确保已排除

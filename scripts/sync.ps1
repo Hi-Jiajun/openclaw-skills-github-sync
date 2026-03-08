@@ -1,15 +1,20 @@
-# OpenClaw Skills GitHub Sync Script
-# ==== 请根据你的路径修改以下配置 ====
-$privatePath = "C:\Users\hiliang\Documents\openclaw-skills-private"   # 私有 skills 路径
-$publicPath = "C:\Users\hiliang\Documents\openclaw-skills-public"     # 公开 skills 路径
+# OpenClaw Skills GitHub Sync Script for Windows
+# ==== 配置加载 ====
+$scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+$configFile = Join-Path $scriptDir "config.ps1"
+
+if (Test-Path $configFile) {
+    . $configFile
+} else {
+    # 默认配置
+    $privatePath = "$env:USERPROFILE\openclaw-skills-private"
+    $publicPath = "$env:USERPROFILE\openclaw-skills-public"
+}
 
 Write-Host "=========================================="
 Write-Host "OpenClaw Skills GitHub Sync"
 Write-Host "=========================================="
 
-$gitPath = "C:\Program Files\Git\cmd\git.exe"
-
-# Function to sync a repository
 function Sync-Repo {
     param($repoPath, $repoName)
     
@@ -19,17 +24,58 @@ function Sync-Repo {
     }
     
     Set-Location $repoPath
-    $status = & $gitPath status --porcelain
+    
+    if (-not (Test-Path ".git")) {
+        Write-Host "[SKIP] $repoName - Not a git repository"
+        return
+    }
+    
+    # 检查 .gitignore
+    if (-not (Test-Path ".gitignore")) {
+        Write-Host "[WARN] No .gitignore found, creating..."
+        @"
+# Credentials
+credentials/
+*.key
+*.pem
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temp
+*.tmp
+*.temp
+"@ | Out-File -FilePath ".gitignore" -Encoding UTF8
+    }
+    
+    $status = git status --porcelain
     
     if ($status) {
-        Write-Host "Changes in $repoName"
+        Write-Host "Changes in $repoName :"
         $status | ForEach-Object { Write-Host "  $_" }
         
-        & $gitPath add .
-        & $gitPath commit -m "Sync $(Get-Date -Format 'yyyy-MM-dd HH:mm')"
-        & $gitPath push origin main
+        Write-Host ""
+        Write-Host "Run 'git status' to review changes before committing."
         
-        Write-Host "[OK] $repoName synced"
+        $confirm = Read-Host "Continue with sync? (y/n)"
+        if ($confirm -ne "y" -and $confirm -ne "Y") {
+            Write-Host "Sync cancelled."
+            return
+        }
+        
+        git add -A
+        git commit -m "Sync $(Get-Date -Format 'yyyy-MM-dd HH:mm')"
+        git push origin main
+        
+        if ($LASTEXITCODE -eq 0) {
+            Write-Host "[OK] $repoName synced"
+        } else {
+            Write-Host "[FAIL] $repoName sync failed"
+        }
     } else {
         Write-Host "[OK] $repoName - No changes"
     }

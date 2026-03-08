@@ -22,19 +22,19 @@ description: |
 
 | 平台 | 脚本 |
 |------|------|
-| Windows | sync.ps1 |
-| Linux | sync.sh |
-| Mac | sync.sh |
+| Windows | scripts/sync.ps1 |
+| Linux | scripts/sync.sh |
+| Mac | scripts/sync.sh |
 
 ## 配置项
 
-### Windows (sync.ps1)
+### Windows (scripts/sync.ps1)
 ```powershell
 $privatePath = "C:\Users\YourName\openclaw-skills-private"
 $publicPath = "C:\Users\YourName\openclaw-skills-public"
 ```
 
-### Linux/Mac (sync.sh)
+### Linux/Mac (scripts/sync.sh)
 ```bash
 PRIVATE_PATH="$HOME/openclaw-skills-private"
 PUBLIC_PATH="$HOME/openclaw-skills-public"
@@ -44,24 +44,30 @@ PUBLIC_PATH="$HOME/openclaw-skills-public"
 
 ### 首次设置
 
+安装 GitHub CLI：
 ```bash
-# 安装 GitHub CLI
 # Linux
 sudo apt install gh
 
 # Mac
 brew install gh
 
-# 登录 GitHub
-gh auth login
+# Windows
+winget install GitHub.cli
+```
 
-# 创建仓库
+登录 GitHub：
+```bash
+gh auth login
+```
+
+创建仓库：
+```bash
 gh repo create my-skills --private
 gh repo create my-skills-public --public
 ```
 
-### 初始化本地仓库
-
+初始化本地仓库：
 ```bash
 cd ~/my-skills-folder
 git init
@@ -75,13 +81,13 @@ git push -u origin main
 
 #### Windows
 ```powershell
-powershell -ExecutionPolicy Bypass -File "sync.ps1"
+powershell -ExecutionPolicy Bypass -File "scripts/sync.ps1"
 ```
 
 #### Linux / Mac
 ```bash
-chmod +x sync.sh
-./sync.sh
+chmod +x scripts/sync.sh
+./scripts/sync.sh
 ```
 
 ## 同步流程
